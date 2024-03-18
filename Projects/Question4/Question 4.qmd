@@ -1,0 +1,106 @@
+# QUESTION 4
+
+```{python}
+import altair as alt
+import pandas as pd
+```
+
+```{python}
+#Load the data 
+data = pd.read_csv("Crop_recommendation.csv")
+data.columns
+```
+```{python}
+# Found the average mean of the different variables to make a more neat and concise graph.
+mean = data.groupby('label').mean().reset_index()
+mean.head()
+```
+
+
+```{python}
+# Using a brush selection, to vertically concatenate two views of the same data.
+brush = alt.selection_interval()
+
+#create a chart to represent the information in the dataset.
+base = alt.Chart(mean).encode(
+  alt.X("label:N").title("Crops Grown")
+).properties(
+  height = 500,
+  width = 500,
+  title = alt.Title("FACTORS AFFECTING THE GROWTH OF DIFFERENT CROPS.")
+)
+
+# Used a bar graph to represent the rainfall.
+rain = base.mark_bar(color='skyblue').encode(
+  alt.Y("rainfall:Q").title('Avg. Rainfall(mm)'),
+  tooltip="rainfall:Q"
+)
+
+# Used a line graph to represent the temperature levels
+temp =base.mark_line(color='red').encode(
+  alt.Y("temperature:Q").title('Avg. Temperature (°C)'),
+  tooltip="temperature:Q"
+)
+
+# Making a bar and line graph to represent the rainfall and temperature on a single graph.
+#Made two independent scales to represent both variables.
+graph = alt.layer(rain, temp).resolve_scale(
+  y="independent"
+).add_params(
+  brush
+)
+
+# Graph to compare the amount of ph needed for the growth of different crops.
+lower = alt.Chart(data).mark_boxplot(extent = 'min-max').encode(
+  alt.X("label:N"),
+  alt.Y("ph:Q").title("Avg. PH of the soil"),
+  color="label:N"
+).properties(
+  height= 200,
+  width = 500
+).transform_filter(
+  brush
+)
+
+#Binding Potassium,Nitrogen,Phosphorous
+selection = alt.selection_point(fields=["label"])
+color = alt.condition(
+  selection,
+  alt.Color("label:N").legend(None),
+  alt.value('lightgray')
+)
+
+#Graph to compare the amount of potassium needed in the soil against rainfall.
+chart= alt.Chart(mean).mark_circle().encode(
+  alt.X("K:Q"),
+  alt.Y("rainfall:Q").title("Avg.Rainfall(mm)"),
+  color=color,
+  tooltip="label:N"
+).properties(
+  height = 500,
+  width = 200,
+  title = alt.Title("Amount of Potassium(K) in Soil")
+)
+legend = alt.Chart(mean).mark_circle().encode(
+  alt.Y("label:N").axis(orient = "right"),
+  color = color
+).add_params(
+  selection
+)
+# Formular to put the different graphs together.
+graph & lower | chart | legend
+
+
+```
+
+The graph above shows different categories of crops. To plant crops, a number of different factors have to be put into consideration. Different crops thrive in different environments and with different conditions. To achieve the highest yields, we have to all this when deciding to plant. 
+
+The graphic above comes form a dataset that records a number of these factors such as the amount of rainfall, temperature, humidity, ph different crops need as well as minerals like potassium, phosphorous and nitrogen.
+It compares some of the factors to help come up with possible measures to increase yields.
+
+Most of the crops grown would require to be planted in areas of relatively high temperatures between 18 to 32 degrees Celsisus. 
+the crops need soils that have a ph between  6 - 8 except for some like kidney beans, mangoes and pigeon beans that need lower ph soils.
+Most soils require soil with potassium levels less than 50 and average rainfall of about 80 - 120 mm. There are a few outliers that have higher requirements. Rice needs to be planted in areas with an average rainfall of 200mm. 
+Apples and grapes need soils with potassium levels of up to 200.
+
+I wanted to make multiple to investigate all the different factors and it would have been good if I could bind all the minerals to one graph but on second thought desired it would make the graphic to noisy.

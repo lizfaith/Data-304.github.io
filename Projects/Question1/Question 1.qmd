@@ -1,0 +1,46 @@
+## QUESTION 3
+
+A. I appreciate the use of faceting through out the different graphics shown in homework 3. This helped to break down the twin pairs into six parts and each of the twin could also be compared to one another.
+
+B. I did not appreciate the use of the cirl=cle/ point maek. These were hard to read and made interpretation of data difficult. 
+
+
+```{python}
+import pandas as pd
+import altair as alt
+```
+
+```{python}
+# Load the dataset 
+twins = pd.read_csv("twins-genetics-long .csv")
+twins.head()
+```
+# Comparing the twins.
+```{python}
+chart = alt.Chart(twins).mark_bar().encode(
+  alt.Y("genetic share:Q"),
+  alt.X("id:N"),
+  color="region:N",
+  column="pair:O",
+).properties(
+  title = alt.Title("Graph comparing twins genetic share against Ancestry Kit")
+)
+chart
+```
+Through the ancestry kit, we find that the results of the genetic share of the twins were fairly the same through out when used in various regions. We only have a slight discrepancy in pair 4, where one of the twins has origins in East Asia and SE Europe while the other twin does not. 
+
+# Comparing the Kits
+```{python}
+chart = alt.Chart(twins).mark_bar().encode(
+  alt.Y("genetic share:Q"),
+  alt.X("kit:N"),
+  color="region:N",
+  column="pair:O",
+).properties(
+  title = alt.Title("Graph comparing the kits")
+)
+chart
+```
+
+The graph below compares the different kits used throughout the survey. From the graph shown above,we can see that the MyHeritage kit has the most differing results from the other kits used. This can be seen it pairs 2,3,4 and 6 which are lacking evidence of genes from some regions that the other kits show. In my opinion making it the least reliable kit to use. Ancestry kit has the best results from the kits above shown through the consistency in results it provides. This would make it the most ideal kit to use.
+

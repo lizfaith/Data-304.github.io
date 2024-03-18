@@ -1,0 +1,54 @@
+## QUESTION 2
+
+```{python}
+import pandas as pd
+import altair as alt
+from vega_datasets import data
+```
+
+```{python}
+# Load gas price data and countries data
+gasoline = pd.read_csv("gas_prices.csv")
+world = pd.read_csv("all.csv")
+```
+
+
+```{python}
+# Rename name to country
+regions = world.rename(columns={"name" : "country"})
+regions.head()
+```
+
+```{python}
+# Create a new data frame called region
+region =regions[["country","region","alpha-3"]]
+region.head()
+```
+```{python}
+# Merge gas prices with countries data
+gas_prices_merged = region.merge(gasoline, how='left', on='country')
+gas_prices_merged = gas_prices_merged.drop_duplicates().drop(8)
+
+```
+
+
+```{python}
+# Gas prices over time
+chart = alt.Chart(gas_prices_merged).mark_bar().encode(
+    x='year:O',
+    y=alt.Y('value:Q', title='Gas Price per Liter', aggregate ='mean'),
+    color='region:N'
+).properties(
+    height=300,
+    width=400,
+    title='Gasoline Prices Over Time by Region'
+).facet(
+    row="region"
+).transform_fold(
+    fold=['2000', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'],
+    as_=['year', 'value']
+)
+
+chart
+```
+

@@ -1,0 +1,70 @@
+# QUestion 3
+```{python}
+import pandas as pd
+import altair as alt
+
+```
+
+```{python}
+data= pd.read_excel("Tanzania.xlsx")
+data.head()
+```
+```{python}
+# Calculate the midpoint of survey years
+def calculate_midpoint(DHS_survey_Year):
+    if '-' in str(DHS_survey_Year):
+        start_year, end_year = map(int, str(DHS_survey_Year).split("-"))
+        midpoint = start_year + (end_year - start_year) / 2
+    else:
+        midpoint = int(DHS_survey_Year)
+    return midpoint
+
+
+data['Midpoint'] = data['DHS survey Year'].apply(calculate_midpoint)
+```
+
+```{python}
+data.head()
+```
+
+
+```{python}
+# Create a line chart for each variable over time
+chart = alt.Chart(data).mark_bar(color = "red", opacity = 0.7).encode(
+  x="Midpoint:O",
+  y="Total Fertility rate:Q",
+  tooltip=['Midpoint', 'Contraception use']
+    ).properties(
+      height = 400,
+      width = 200
+)
+
+women= alt.Chart(data).mark_bar(color = "orange", opacity = 0.7).encode(
+    x='Midpoint:O',
+    y='Contraception use:Q',
+    tooltip=['Midpoint', 'Contraception use']
+).properties(title='Current Use of Modern Contraception over Time')
+
+unmet_need = alt.Chart(data).mark_bar(color = "blue", opacity = 0.7).encode(
+    x='Midpoint:O',
+    y='No family planning:Q',
+    tooltip=['Midpoint', 'No family planning']
+).properties(title='Unmet Need for Family Planning over Time')
+
+
+unmet_need + women + chart
+```
+
+```{python}
+
+
+```
+
+```{python}
+
+```
+
+
+
+
+
