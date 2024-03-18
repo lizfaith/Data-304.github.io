@@ -1,0 +1,56 @@
+1. Healy says that problems with graphics tend to come in three varieties. What are they?
+    Aesthetic, Substantive, Perpectual
+    
+2.What are the differences between Figure 1.8 and 1.9? Which is the more important difference? Why?
+  Figure 1.8 shows the percentage of respondents who rated the importance of living in a democracy as "Absolutely Important" (score of 10) across different age cohorts.
+Figure 1.9 shows the average score given by respondents across different age cohorts, indicating the average level of importance placed on living in a democracy.
+The more important difference is the measure being shown. Figure 1.8 presents a more extreme view by focusing on those who rated living in a democracy as "Absolutely Important," potentially exaggerating the perceived crisis in faith in democracy. On the other hand, Figure 1.9 provides a more nuanced view by showing the average score, which still indicates a decline but is not as alarmist as Figure 1.8.
+
+  
+3.The article where Figure 1.8 appeared generated a lot of discussion. A response by Erik Voeten includes many graphics. Scan through his response and pick one of the graphics that you find esepecially compelling and do the following:
+
+Explain why you chose it.
+What is the main story being communicated by the graphic?
+Give a grammar of graphics description of the graph. What marks are being used? What are the channels being used? How are they mapped to data? Is composition (facets, layers, concatenation) being used? etc.
+I chose the graphic showing the trend in the number of students beginning law school each year since 1973 (Figure 1.27) because it effectively illustrates the significant decline in law school enrollments around 2011.
+
+Main story: The main story communicated by the graphic is the sudden and precipitous decline in law school enrollments around 2011 to levels not seen since the early 1970s.
+
+Grammar of graphics description: The graphic uses points to represent the number of students beginning law school each year, with the y-axis representing the year and the x-axis representing the number of students. The marks used are points,lines and the channel used is position along the x-axis mapped to the number of students enrolled and position along the y-axis mapped to the year.
+Yes, vertical concatenataion is being used.
+
+What does Healy have to say about stacked bar graphs? How is it related to perception?
+Healy mentions that stacked bar graphs can be misleading because they rely on the area encoding, which can distort perception. This is related to perception because our ability to accurately interpret area-based comparisons is weaker compared to other encodings like position or length.
+
+
+4.How do “optical illusions” differ from “magic tricks”?
+Optical illusions are visual phenomena that deceive our perception of reality due to the way our brains interpret visual information, while magic tricks involve intentional deception or manipulation by a performer.
+
+
+
+5.Healy recomends using color scheme chosen by experts in color perception to avoid common perception difficulties with color. He goes on to mention a three different types of color scales.
+List them and say what kinds of data each should be used for.
+a. Sequential color scale: Used for data that has a clear order or progression, such as temperature or time.
+
+b. Diverging color scale: Used for data that has a neutral midpoint and diverges in two directions, such as positive and negative values or before and after comparisons.
+
+c. Qualitative color scale: Used for unordered categorical data, where each category is distinct and there is no inherent order.
+
+Vega-lite includes a fourth kind of scheme. Find it in the color scheme documentation. What is this kind of scale used for, and what warning does Vega-lite provide about these scales.
+What is/are the main take-away(s) for desiging graphics from the section on pre-attentive search (pop-out)?
+
+Vega-lite includes a fourth kind of scheme called "cyclical" scale. This kind of scale is used for data that repeats in cycles, such as days of the week or months of the year. Vega-lite warns that these scales may not be suitable for all types of data and should be used with caution.
+Certain visual properties, such as color, size, and orientation, can be quickly detected by the human visual system without conscious effort. Designing graphics to utilize these properties effectively can help important information "pop out" to viewers.
+
+6.Why does Healy claim that “data visualization can hardly be a replacement for statistical modeling”? How is this related to the “Gestalt rules”?
+Healy claims that "data visualization can hardly be a replacement for statistical modeling" because visualization, while powerful, relies heavily on our ability to perceive patterns and relationships, which can sometimes lead to erroneous conclusions. This is related to the "Gestalt rules," which describe our tendency to infer relationships between visual elements that go beyond what is strictly visible.
+
+7.Section 1.4 presents a summary of some studies similar to (but better than) our perception “quizzes” from the other day. Section 1.5 relates this to channels in a Vega-lite graphic. Briefly summarize the advice in 1.5 regarding how to select and use channels for a graphic.
+Select channels that are suitable for the type of data you have. For example, use position encoding for ordered data, length encoding for quantitative data without a scale, and avoid using area encoding for precise comparisons.
+
+Use channels that allow viewers to efficiently make comparisons. Position encoding along a common scale is most effective, followed by length encoding, while area encoding is less accurate for comparisons.
+The effectiveness of a graphic depends not only on the choice of channel but also on how it is implemented perceptually. For example, choosing the right colors for a gradient or the right hues for categorical variables can greatly affect how the data is interpreted.
+Remember that channels are elements used to encode data, but they do not determine the type of graph. The choice of channel narrows down the possible visual representations but does not dictate the final form of the graph.
+
+What advice does Healy give about including 0 in the domain of a scale?
+Healy advises that including 0 in the domain of a scale depends on the context and the type of data being represented. In some cases, including 0 may provide a more accurate and honest representation of the data, while in other cases, it may not be necessary or relevant. It's essential to consider the implications of including or excluding 0 based on the specific requirements and goals of the visualization.
