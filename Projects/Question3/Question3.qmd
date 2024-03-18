@@ -54,15 +54,13 @@ unmet_need = alt.Chart(data).mark_bar(color = "blue", opacity = 0.7).encode(
 
 unmet_need + women + chart
 ```
+The data shows a consistent decline in the total fertility rate from 6.2 in 1991-1992 to 5.2 in 2015-2016. This decline suggests a significant shift in family planning practices and awareness in Tanzania.
 
-```{python}
+There is a notable increase in the current use of modern methods of contraception among all women, rising from 5.9% in 1991-1992 to 38.4% in 2015-2016. This increase indicates improved access to and acceptance of modern contraceptive methods, contributing to the decline in the total fertility rate.
 
+Despite the positive trends in modern contraception use, the data also shows a persistent level of unmet need for family planning among women. The percentage of women with unmet need has remained relatively stable, ranging from 22.1% to 27.8% over the years. This highlights the ongoing challenges in ensuring universal access to family planning services and addressing barriers to contraceptive use.
 
-```
-
-```{python}
-
-```
+Overall, the graphic paints a picture of progress in family planning in Tanzania, with a decline in fertility rates and an increase in modern contraceptive use. However, it also underscores the importance of continued efforts to reduce unmet need and improve access to family planning services for all women.
 
 
 

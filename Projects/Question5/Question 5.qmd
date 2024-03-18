@@ -1,0 +1,12 @@
+## QUESTION 5 & 6
+
+A. Layers - I used layers in Question 3.
+  facets - I used facets in question 2
+  interactions(tooltip) - Iused it in question 3 and 4
+  concatentation - I used it in question 4.
+  
+  
+# 6
+
+I used concatentation to like three graphs together and used them to make comparisons with each other.
+I used Dual Y axis in my graphic for question 4 to make a rainfall and temperature graphic.
